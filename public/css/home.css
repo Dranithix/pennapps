@@ -1,0 +1,12 @@
+body {
+  background: #1ab188;
+}
+
+.section {
+  background: none;
+}
+
+.column {
+  background: #F0F0F0;
+  margin: 0 1rem;
+}
