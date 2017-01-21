@@ -22,7 +22,6 @@ Template.home.viewmodel({
                 data: {
                     labels: ["Progress", "Todo"],
                     datasets: [
-
                         {
                             label: "Percentage",
                             data: [65, 35],
@@ -43,9 +42,11 @@ Template.home.viewmodel({
             if (exams.length) {
                 let questions = [];
                 _.each(exams, exam => questions = questions.concat(_.map(exam.questions, (question, index) => {
+                    question.rawQuestion = question.question;
                     question.question = (index + 1) + ". " + question.question;
                     question.url = exam.url;
                     question.choices = _.map(question.choices, (choice, index) => choice = "("+ (index + 1) + ") " + choice);
+                    question.exam = exam._id;
 
                     return question;
                 })));
@@ -56,8 +57,31 @@ Template.home.viewmodel({
         }
     },
 
-    voteUp() {
-        console.log("UP")
+    numVotes(question) {
+        return question.votes && question.votes.length || 0;
+    },
+
+    voteUp(q) {
+        console.log(q);
+        console.log("UP");
+        let index = -1, questions = Exams.findOne({_id: q.exam}).questions;
+        for (let i = 0; i < questions.length; i++) {
+            if (questions[i].question == q.rawQuestion) {
+                index = i;
+                break;
+            }
+        }
+
+        let update = {};
+        update[`questions.${index}.votes`] = Meteor.userId();
+        if (index != -1) {
+            if (_.find(questions, question => _.contains(question.votes, Meteor.userId()))) {
+                Exams.update({_id: q.exam}, {$pull: update});
+            } else {
+                Exams.update({_id: q.exam}, {$push: update});
+            }
+
+        }
     },
 
     voteDown() {

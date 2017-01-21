@@ -59,7 +59,11 @@ html {
 /*
     Up/Down vote
 */
-.wrap {
+.vote {
+    cursor: pointer;
+}
+
+.wrap{
     margin-right: 1rem;
     text-align: center;
 }
@@ -97,4 +101,16 @@ html {
 
 section .q-share {
     font-size: 15px;
+}
+
+a:visited {
+    color: #1577c6 !important;
+}
+
+a {
+    border-bottom: 0 !important;
+}
+
+section.rating-container {
+    margin-bottom: 1rem;
 }
