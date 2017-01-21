@@ -39,6 +39,17 @@
             <div class="content">
                 {{#each questions}}
                     <article class="media">
+                        <div class="wrap">
+                            <div {{b "click: voteUp"}} class="vote up">
+                                <i class="fa fa-angle-up"></i>
+                            </div>
+                            <div class="stat">
+                                <span class="score">115</span>
+                            </div>
+                            <div {{b "click: voteDown"}} class="vote inactive">
+                                <i class="fa fa-angle-down"></i>
+                            </div>
+                        </div>
                         <div class="media-content">
                             <article class="message">
                                 <div class="message-body">

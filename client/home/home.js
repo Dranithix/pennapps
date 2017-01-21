@@ -45,7 +45,7 @@ Template.home.viewmodel({
                 _.each(exams, exam => questions = questions.concat(_.map(exam.questions, question => {
                     question.url = exam.url;
                     question.choices = _.map(question.choices, (choice, index) => choice = (index + 1) + ") " + choice);
-                    
+
                     return question;
                 })));
                 this.questions(questions);
@@ -53,5 +53,13 @@ Template.home.viewmodel({
                 this.questions([]);
             }
         }
+    },
+
+    voteUp() {
+        console.log("UP")
+    },
+
+    voteDown() {
+        console.log('DOWN');
     }
 });

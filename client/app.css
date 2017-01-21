@@ -12,6 +12,7 @@ body {
 }
 
 html {
+    overflow-y: hidden !important;
     height: 100%;
 }
 
@@ -37,4 +38,35 @@ html {
 .content .mc-list {
     list-style: none;
     margin-left: 0;
+}
+
+/*
+    Up/Down vote
+*/
+.wrap{
+    margin-right: 1rem;
+    text-align:center;
+}
+
+.up{
+    color:green;
+}
+.down{
+    color:red;
+}
+.inactive{
+    color:gray;
+}
+.score{
+    position: relative;
+    display:block;
+    padding: 5px 0;
+}
+.badge{
+    background: #eee;
+    padding:5px 10px;
+    border-radius: 30px;
+    position: absolute;
+    top:0;
+    margin-left:10px;
 }
