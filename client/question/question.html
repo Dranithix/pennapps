@@ -1,5 +1,48 @@
 <template name="question">
     <div class="section">
         <p class="heading">QUESTION</p>
+        <div class="questions">
+
+            {{#with question}}
+                {{> questionRow}}
+            {{/with}}
+        </div>
     </div>
+</template>
+
+<template name="questionRow">
+    <article class="media columns" style="cursor: pointer;">
+        <div class="column is-8" style="margin-top: 2rem;">
+            <div class="q-container">
+                <div class="align-contain rating-container">
+                    <div {{b "click: parent.voteUp(this)"}} class="vote up">
+                        <i class="fa fa-angle-up"></i>
+                    </div>
+                    <div class="stat">
+                        <span class="score" {{b "text: parent.numVotes(this)"}}></span>
+                    </div>
+                    <div {{b "click: parent.voteDown(this)"}} class="vote inactive">
+                        <i class="fa fa-angle-down"></i>
+                    </div>
+                    <a href={{url}}><i class="q-share fa fa-link fa-1" style="margin-top: 8px;"></i></a>
+                </div>
+                <div {{b "click: parent.gotoQuestion(this)"}} style="cursor: pointer;">
+                    <div class="content">
+                        <p>
+                        <p class="latex-q">{{question}}</p>
+                        <ul class="mc-list latex-mc">
+                            {{#each choices}}
+                                <li>{{this}}</li>
+                            {{/each}}
+                        </ul>
+                        </p>
+                        <p style="margin-top: 2.5rem;">
+                            <span class="tag is-light" style="margin-right: 0.25rem;">Light</span><span
+                                class="tag is-light">Tag 2</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
 </template>
