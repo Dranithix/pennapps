@@ -111,6 +111,13 @@ a {
     border-bottom: 0 !important;
 }
 
-section.rating-container {
-    margin-bottom: 1rem;
+.rating-container {
+    padding-left: 0.5rem;
+    padding-right: 1rem;
+    text-align: center;
+
+}
+
+.q-container {
+    display: flex;
 }

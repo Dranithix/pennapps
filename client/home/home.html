@@ -38,33 +38,33 @@
 
             <div id="questions" class="content">
                 {{#each questions}}
-                    <article class="media">
-                        <div class="wrap">
-                            <section class="rating-container">
-                                <div {{b "click: voteUp(this)"}} class="vote up">
-                                    <i class="fa fa-angle-up"></i>
+                    <article class="media columns">
+                        <div class="column is-8">
+                            <div class="q-container">
+                                <div class="align-contain rating-container">
+                                    <div {{b "click: voteUp(this)"}} class="vote up">
+                                        <i class="fa fa-angle-up"></i>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="score" {{b "text: numVotes(this)"}}></span>
+                                    </div>
+                                    <div {{b "click: voteDown(this)"}} class="vote inactive">
+                                        <i class="fa fa-angle-down"></i>
+                                    </div>
+                                    <a href={{url}} ><i class="q-share fa fa-link fa-1" style="margin-top: 8px;"></i></a>
                                 </div>
-                                <div class="stat">
-                                    <span class="score">{{numVotes this}}</span>
+                                <div class="">
+                                    <div class="content">
+                                        <p>
+                                        <p class="latex-q">{{question}}</p>
+                                        <ul class="mc-list latex-mc">
+                                            {{#each choices}}
+                                                <li>{{this}}</li>
+                                            {{/each}}
+                                        </ul>
+                                        </p>
+                                    </div>
                                 </div>
-                                <div {{b "click: voteDown(this)"}} class="vote inactive">
-                                    <i class="fa fa-angle-down"></i>
-                                </div>
-                            </section>
-                            <section>
-                                <a href={{url}}><i class="q-share fa fa-link fa-1" aria-hidden="true"></i></a>
-                            </section>
-                        </div>
-                        <div class="media-content">
-                            <div class="content">
-                                <p>
-                                    <p class="latex-q">{{question}}</p>
-                                    <ul class="mc-list latex-mc">
-                                        {{#each choices}}
-                                            <li>{{this}}</li>
-                                        {{/each}}
-                                    </ul>
-                                </p>
                             </div>
                         </div>
                     </article>
