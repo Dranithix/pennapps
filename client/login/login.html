@@ -1,0 +1,86 @@
+<template name="login">
+    <section class="hero is-fullheight is-dark is-bold">
+
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns is-vcentered">
+                    <div class="column is-4 is-offset-4">
+                        <h1 class="title">
+                            Login
+                        </h1>
+                        <div class="box">
+                            <label class="label">Email</label>
+                            <p class="control">
+                                <input class="input" type="text" placeholder="jsmith@example.org" {{b "value: email"}}>
+                            </p>
+                            <label class="label">Password</label>
+                            <p class="control">
+                                <input class="input" type="password" placeholder="●●●●●●●" {{b "value: password"}}>
+                            </p>
+                            <hr>
+                            <p class="control">
+                                <button class="button is-primary" {{b "click: login"}}>Login</button>
+                                <button class="button is-default">Cancel</button>
+                            </p>
+                            <h2 {{b "if: error"}} style="color: red" class="subtitle">{{error}}</h2>
+                        </div>
+                        <p class="has-text-centered">
+                            <a href="{{pathFor "/register"}}">Register an Account</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</template>
+
+<template name="register">
+    <section class="hero is-fullheight is-dark is-bold">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns is-vcentered">
+                    <div class="column is-4 is-offset-4">
+                        <h1 class="title">
+                            Register an Account
+                        </h1>
+                        <div class="box">
+                            <label class="label">Email</label>
+                            <p class="control">
+                                <input class="input" type="text" placeholder="jsmith@example.org" {{b "value: email"}}>
+                            </p>
+                            <hr/>
+                            <p class="control">
+                                <input class="input" type="text" placeholder="First Name" {{b "value: firstName"}}>
+                            </p>
+                            <p class="control">
+                                <input class="input" type="text" placeholder="Last Name" {{b "value: lastName"}}>
+                            </p>
+                            <label class="label">Date of Birth</label>
+                            <p class="control">
+                                <input class="input date" type="text" placeholder="Select Date.." {{b "value: dob"}}>
+                            </p>
+                            <hr/>
+                            <label class="label">Password</label>
+                            <p class="control">
+                                <input class="input" type="password" placeholder="●●●●●●●" {{b "value: password"}}>
+                            </p>
+                            <label class="label">Confirm Password</label>
+                            <p class="control">
+                                <input class="input" type="password" placeholder="●●●●●●●" {{b "value: confirmPassword"}}>
+                            </p>
+                            <hr>
+                            <p class="control">
+                                <button class="button is-primary" {{b "click: register"}}>Register</button>
+                            </p>
+                            <h2 {{b "if: error"}} style="color: red" class="subtitle">{{error}}</h2>
+                        </div>
+                        <p class="has-text-centered">
+                            <a href="{{pathFor "/login"}}">Login</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</template>

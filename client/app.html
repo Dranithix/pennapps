@@ -1,0 +1,47 @@
+<template name="app">
+    <section class="hero">
+
+        <div class="hero-head">
+            <nav class="nav has-shadow">
+                <div class="container">
+                    <div class="nav-left">
+                        <a class="nav-item is-brand" href="/">
+                            Platform.
+                        </a>
+                    </div>
+
+                    <span class="nav-toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                    <div class="nav-right nav-menu">
+                            <span class="nav-item">
+
+                            </span>
+                        <a class="nav-item" href="/">
+                            Home
+                        </a>
+                        <div class="nav-item" {{b "click: logout"}}>
+                            <a>Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </section>
+
+    <section>
+        {{> Template.dynamic template=content}}
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="content has-text-centered">
+                <p>
+                    <strong>Platform</strong>. Made with ♡ in Pennapps.
+                </p>
+            </div>
+        </div>
+    </footer>
+</template>

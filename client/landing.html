@@ -1,0 +1,51 @@
+<template name="landing">
+    <section class="hero is-primary is-large header-image">
+        <div class="hero-head">
+            <header class="nav">
+                <div class="container">
+                    <div class="nav-left">
+                        <a class="nav-item" href="/">
+                            Platform.
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <h1 class="title is-2">
+                    Platform
+                </h1>
+                <h2 class="subtitle is-5">
+                    Description here.
+                </h2>
+            </div>
+        </div>
+    </section>
+    <div class="hero-cta">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <p class="title">
+                    <a class="button is-primary" href="{{pathFor "/login"}}">
+                        <span class="icon"><i class="fa fa-sign-in"></i></span>
+                        <span>Sign in</span>
+                    </a>
+
+                    <a class="button is-info" href="{{pathFor "/register"}}">
+                        <span class="icon"><i class="fa fa-user-plus"></i></span>
+                        <span>Register</span>
+                    </a>
+                </p>
+            </div>
+        </nav>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="content has-text-centered">
+                <p>
+                    <strong>Platform</strong>. Made with ♡ in Pennapps.
+                </p>
+            </div>
+        </div>
+    </footer>
+</template>

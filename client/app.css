@@ -1,0 +1,16 @@
+body {
+    width: 100%;
+}
+
+#main {
+    padding: 16px;
+}
+
+#newsletter .input {
+    border-color: white;
+    box-shadow: none;
+}
+
+.nav.has-shadow {
+    box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1) !important;
+}
