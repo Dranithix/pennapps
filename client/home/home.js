@@ -1,7 +1,6 @@
 /**
  * Created by Kenta Iwasaki on 1/21/2017.
  */
-import annotator from "annotator";
 import Chart from "chart.js";
 
 Template.home.viewmodel({
@@ -34,19 +33,25 @@ Template.home.viewmodel({
                 },
 
             }
-)
-},
+        )
+    },
 
-autorun() {
-    const exams = Exams.find({}).fetch();
+    autorun() {
+        if (this.parent().subject()) {
+            const exams = Exams.find({category: this.parent().subject()}).fetch();
 
-    let questions = [];
-    _.each(exams, exam => questions = questions.concat(_.map(exam.questions, question => {
-        question.url = exam.url;
-        question.choices = _.map(question.choices, (choice, index) => choice = (index + 1) + ") " + choice);
-
-        return question;
-    })));
-    this.questions(questions);
-}
-})
+            if (exams.length) {
+                let questions = [];
+                _.each(exams, exam => questions = questions.concat(_.map(exam.questions, question => {
+                    question.url = exam.url;
+                    question.choices = _.map(question.choices, (choice, index) => choice = (index + 1) + ") " + choice);
+                    
+                    return question;
+                })));
+                this.questions(questions);
+            } else {
+                this.questions([]);
+            }
+        }
+    }
+});
