@@ -43,6 +43,10 @@ html {
 /*
     Up/Down vote
 */
+.vote {
+    cursor: pointer;
+}
+
 .wrap{
     margin-right: 1rem;
     text-align:center;

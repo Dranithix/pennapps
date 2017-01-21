@@ -40,11 +40,11 @@
                 {{#each questions}}
                     <article class="media">
                         <div class="wrap">
-                            <div {{b "click: voteUp"}} class="vote up">
+                            <div {{b "click: voteUp(this)"}} class="vote up">
                                 <i class="fa fa-angle-up"></i>
                             </div>
                             <div class="stat">
-                                <span class="score">115</span>
+                                <span class="score">{{numVotes this}}</span>
                             </div>
                             <div {{b "click: voteDown"}} class="vote inactive">
                                 <i class="fa fa-angle-down"></i>
