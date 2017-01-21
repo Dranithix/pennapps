@@ -3,6 +3,9 @@
  */
 
 Meteor.methods({
-    'subjects': function() {}
+    'subjects': function () {
+        const subjects = _.groupBy(Exams.find({}).fetch(), 'category');
+        return Object.keys(subjects);
+    }
 
 })
