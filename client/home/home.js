@@ -42,9 +42,10 @@ Template.home.viewmodel({
 
             if (exams.length) {
                 let questions = [];
-                _.each(exams, exam => questions = questions.concat(_.map(exam.questions, question => {
+                _.each(exams, exam => questions = questions.concat(_.map(exam.questions, (question, index) => {
+                    question.question = (index + 1) + ". " + question.question;
                     question.url = exam.url;
-                    question.choices = _.map(question.choices, (choice, index) => choice = (index + 1) + ") " + choice);
+                    question.choices = _.map(question.choices, (choice, index) => choice = "("+ (index + 1) + ") " + choice);
 
                     return question;
                 })));

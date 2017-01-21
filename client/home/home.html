@@ -3,13 +3,13 @@
         <div class="column is-3" style="box-shadow: 0px 9px 12px -2px rgba(0,0,0,0.4);">
 
             <div style="padding: 16px">
-                <p class="has-text-centered heading">Your Progress</p>
+                <h4 class="title is-4 has-text-centered">Your Progress</h4>
                 <hr/>
                 <canvas id="progressChart" width="256"></canvas>
             </div>
 
             <div style="padding: 16px">
-                <p class="has-text-centered heading">Tasks</p>
+                <h4 class="title is-4 has-text-centered">Tasks</h4>
                 <hr/>
             </div>
 
@@ -36,37 +36,36 @@
             <p class="has-text-left heading">Top Questions</p>
             <hr/>
 
-            <div class="content">
+            <div id="questions" class="content">
                 {{#each questions}}
                     <article class="media">
                         <div class="wrap">
-                            <div {{b "click: voteUp"}} class="vote up">
-                                <i class="fa fa-angle-up"></i>
-                            </div>
-                            <div class="stat">
-                                <span class="score">115</span>
-                            </div>
-                            <div {{b "click: voteDown"}} class="vote inactive">
-                                <i class="fa fa-angle-down"></i>
-                            </div>
+                            <section>
+                                <a href={{url}}><i class="q-share fa fa-link fa-1" aria-hidden="true"></i></a>
+                            </section>
+                            <section>
+                                <div {{b "click: voteUp"}} class="vote up">
+                                    <i class="fa fa-angle-up"></i>
+                                </div>
+                                <div class="stat">
+                                    <span class="score">115</span>
+                                </div>
+                                <div {{b "click: voteDown"}} class="vote inactive">
+                                    <i class="fa fa-angle-down"></i>
+                                </div>
+                            </section>
                         </div>
                         <div class="media-content">
-                            <article class="message">
-                                <div class="message-body">
-                                    <div class="content">
-                                        <p>
-                                            <a href={{url}}>{{url}}</a>
-                                            <br/><br/>
-                                            <strong>{{question}}</strong>
-                                        <ul class="mc-list">
-                                            {{#each choices}}
-                                                <li>{{this}}</li>
-                                            {{/each}}
-                                        </ul>
-                                        </p>
-                                    </div>
-                                </div>
-                            </article>
+                            <div class="content">
+                                <p>
+                                    <p class="latex-q">{{question}}</p>
+                                    <ul class="mc-list latex-mc">
+                                        {{#each choices}}
+                                            <li>{{this}}</li>
+                                        {{/each}}
+                                    </ul>
+                                </p>
+                            </div>
                         </div>
                     </article>
                 {{/each}}
