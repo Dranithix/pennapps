@@ -38,7 +38,7 @@
 
             <div id="questions" class="content">
                 {{#each questions}}
-                    <article class="media columns">
+                    <article class="media columns" style="cursor: pointer;" {{b "click: gotoQuestion(this)"}}>
                         <div class="column is-8">
                             <div class="q-container">
                                 <div class="align-contain rating-container">
