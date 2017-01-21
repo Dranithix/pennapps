@@ -1,10 +1,52 @@
 <template name="home">
-    <div class="section columns">
-        <div class="column is-3">
-                Test
+    <div class="columns is-gapless" style="height: 100%; background-color: white;">
+        <div class="column is-3" style="box-shadow: 3px 2px 12px -2px rgba(0,0,0,0.4);">
+
+            <div style="padding: 16px">
+                <p class="has-text-centered heading">Your Progress</p>
+                <hr/>
+            </div>
+
+            <div style="padding: 16px">
+                <p class="has-text-centered heading">Tasks</p>
+                <hr/>
+            </div>
+
+            <section class="hero">
+                <div class="hero-body" style="padding-bottom: 8px; padding-top: 8px;">
+                    <div class="content" style="padding: 16px;">
+                        <p class="title is-5">Simple Derivatives</p>
+                        <p class="subtitle is-6">Complete first and second derivatives.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="hero is-primary">
+                <div class="hero-body" style="padding-bottom: 8px; padding-top: 8px;">
+                    <div class="content" style="padding: 16px;">
+                        <p class="title is-5">Points of Inflection</p>
+                        <p class="subtitle is-6">Find the points of inflection using the second derivative.</p>
+                    </div>
+                </div>
+            </section>
+
         </div>
-        <div class="column is-9">
-            Test 2
+        <div class="column is-9" style="padding: 16px;">
+            <p class="has-text-left heading">Top Questions</p>
+
+            <div class="content">
+                <ul>
+                    {{#each questions}}
+                        <li><p>{{question}}</p>
+                            <ul>
+                                {{#each choices}}
+                                    <li>{{this}}</li>
+                                {{/each}}
+                            </ul>
+                        </li>
+                    {{/each}}
+                </ul>
+            </div>
         </div>
     </div>
 </template>
