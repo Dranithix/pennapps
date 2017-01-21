@@ -48,3 +48,9 @@ userRoutes.route('/question/:exam/:question', {
         BlazeLayout.render('app', {content: 'question'});
     }
 })
+
+userRoutes.route('/worksheet', {
+    action: (params, queryParams) => {
+        BlazeLayout.render('app', {content: 'worksheet'});
+    }
+})
