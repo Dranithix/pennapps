@@ -5,7 +5,7 @@
             <div style="padding: 16px">
                 <p class="has-text-centered heading">Your Progress</p>
                 <hr/>
-                <canvas id="progressChart" width="100" height="100" style="width: 100px; height: 100px;"></canvas>
+                <canvas id="progressChart" width="256"></canvas>
             </div>
 
             <div style="padding: 16px">
@@ -39,11 +39,6 @@
             <div class="content">
                 {{#each questions}}
                     <article class="media">
-                        <figure class="media-left">
-                            <p class="image is-64x64">
-                                <img src="http://bulma.io/images/placeholders/128x128.png">
-                            </p>
-                        </figure>
                         <div class="media-content">
                             <article class="message">
                                 <div class="message-body">
@@ -52,7 +47,7 @@
                                             <a href={{url}}>{{url}}</a>
                                             <br/><br/>
                                             <strong>{{question}}</strong>
-                                        <ul>
+                                        <ul class="mc-list">
                                             {{#each choices}}
                                                 <li>{{this}}</li>
                                             {{/each}}
