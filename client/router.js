@@ -42,3 +42,9 @@ userRoutes.route('/home', {
         BlazeLayout.render('app', {content: 'home'});
     }
 })
+
+userRoutes.route('/question/:exam/:question', {
+    action: (params, queryParams) => {
+        BlazeLayout.render('app', {content: 'question'});
+    }
+})

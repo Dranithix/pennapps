@@ -35,8 +35,8 @@
         <div class="column is-9" style="padding: 16px; overflow-y: auto;">
             <div id="questions" class="content">
                 {{#each questions}}
-                    <article class="media columns" >
-                        <div class="column is-8" style="margin-top: 2rem; margin-bottom: 2rem;">
+                    <article class="media columns" style="cursor: pointer;">
+                        <div class="column is-8" style="margin-top: 2rem;">
                             <div class="q-container">
                                 <div class="align-contain rating-container">
                                     <div {{b "click: voteUp(this)"}} class="vote up">
@@ -50,7 +50,7 @@
                                     </div>
                                     <a href={{url}} ><i class="q-share fa fa-link fa-1" style="margin-top: 8px;"></i></a>
                                 </div>
-                                <div class="">
+                                <div {{b "click: gotoQuestion(this)"}} style="cursor: pointer;">
                                     <div class="content">
                                         <p>
                                         <p class="latex-q">{{question}}</p>
@@ -59,6 +59,9 @@
                                                 <li>{{this}}</li>
                                             {{/each}}
                                         </ul>
+                                        </p>
+                                        <p style="margin-top: 2.5rem;">
+                                            <span class="tag is-light" style="margin-right: 0.25rem;">Light</span><span class="tag is-light">Tag 2</span>
                                         </p>
                                     </div>
                                 </div>
