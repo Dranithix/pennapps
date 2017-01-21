@@ -1,6 +1,6 @@
 <template name="home">
     <div class="columns is-gapless" style="height: 100%; background-color: white;">
-        <div class="column is-3" style="box-shadow: 0px 9px 12px -2px rgba(0,0,0,0.4);">
+        <div class="column is-3" style="box-shadow: -4px 8px 12px -2px rgba(0,0,0,0.4);">
 
             <div style="padding: 16px">
                 <h4 class="title is-4 has-text-centered">Your Progress</h4>
@@ -33,13 +33,10 @@
 
         </div>
         <div class="column is-9" style="padding: 16px; overflow-y: auto;">
-            <p class="has-text-left heading">Top Questions</p>
-            <hr/>
-
             <div id="questions" class="content">
                 {{#each questions}}
-                    <article class="media columns">
-                        <div class="column is-8">
+                    <article class="media columns" >
+                        <div class="column is-8" style="margin-top: 2rem; margin-bottom: 2rem;">
                             <div class="q-container">
                                 <div class="align-contain rating-container">
                                     <div {{b "click: voteUp(this)"}} class="vote up">
