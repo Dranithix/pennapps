@@ -10,7 +10,7 @@ Template.app.viewmodel({
         const self = this;
         Meteor.call('subjects', (err, res) => {
             this.subjects(res);
-            this.subject(this.subjects()[0]);
+            this.subject("Technology & Computing");
         })
     },
     logout() {

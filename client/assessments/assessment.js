@@ -26,6 +26,6 @@ Template.assessments.viewmodel({
 
     },
     createAssessment() {
-
+        FlowRouter.go("/worksheet/trigonometry");
     }
 })
