@@ -1,4 +1,8 @@
 <template name="home">
+    <div class="button is-info"
+         style="position: fixed; bottom: 32px; right: 56px; width: 64px; height: 64px; border-radius: 32px;" {{b "click: createQuestion"}}>
+        <i class="fa fa-plus" style="font-size: 32px;"></i>
+    </div>
     <div class="columns is-gapless" style="height: 100%; background-color: white;">
         <div class="column is-3 custom-green" style="box-shadow: -4px 8px 12px -2px rgba(0,0,0,0.4);">
 
@@ -33,7 +37,7 @@
             </section>
         </div>
         <div class="column is-9 main-container" style="padding: 16px;">
-            <h4 class="title is-4">Top Questions</h4>
+            <h4 class="title is-4">Feed</h4>
             <div class="questions content is-centered">
                 {{#each questions}}
                     {{> questionRow}}

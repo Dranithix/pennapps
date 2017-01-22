@@ -2,6 +2,8 @@
  * Created by Kenta Iwasaki on 1/21/2017.
  */
 import Chart from "chart.js";
+import swal from "sweetalert2";
+import "sweetalert2/dist/sweetalert2.css";
 
 Template.home.viewmodel({
     questions: [],
@@ -89,7 +91,7 @@ Template.home.viewmodel({
     },
 
     votedUpClass(obj) {
-      return _.contains(obj.votes, Meteor.userId());
+        return _.contains(obj.votes, Meteor.userId());
     },
 
     voteDown() {
@@ -97,6 +99,7 @@ Template.home.viewmodel({
     },
 
     gotoQuestion(question) {
+        if (question.url === "#") return;
         let index = -1, questions = Exams.findOne({_id: question.exam}).questions;
         for (let i = 0; i < questions.length; i++) {
             if (questions[i].question == question.question) {
@@ -105,5 +108,31 @@ Template.home.viewmodel({
             }
         }
         FlowRouter.go(`/question/${question.exam}/${index}`);
-    }
+    },
+
+    createQuestion() {
+        const self = this;
+        swal({
+            title: 'Ask a question',
+            input: 'text',
+            showCancelButton: true,
+            confirmButtonText: 'Submit',
+            showLoaderOnConfirm: true,
+            preConfirm: function (t) {
+                return new Promise(function (resolve, reject) {
+                   self.questions().unshift({
+                       url: "#", choices: [], exam: Exams.findOne({})._id, question: t, tags: [{label: "User"}]
+                   })
+                    resolve();
+                })
+            },
+            allowOutsideClick: false
+        }).then(function (email) {
+            swal({
+                type: 'success',
+                title: 'Posted',
+                html: 'Your question has been posted.'
+            })
+        })
+    },
 });
