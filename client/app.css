@@ -167,3 +167,15 @@ a {
 .nav-menu a, .nav-menu a:visited {
     color: #6FE0B8 !important;
 }
+
+.up {
+    color: gray;
+}
+
+.voteActive {
+    color: green;
+}
+
+.voteDownActive {
+    color :red;
+}
