@@ -1,49 +1,45 @@
 <template name="landing">
-    <section class="hero is-primary is-large header-image">
+    <section class="hero is-primary is-large">
         <div class="hero-head">
             <header class="nav">
                 <div class="container">
                     <div class="nav-left">
                         <a class="nav-item" href="/">
-                            Platform.
+                            <img src="/images/logo.jpg" /> Edumame
                         </a>
                     </div>
                 </div>
             </header>
         </div>
         <div class="hero-body">
-            <div class="container has-text-centered">
-                <h1 class="title is-2">
-                    Platform
-                </h1>
-                <h2 class="subtitle is-5">
-                    Description here.
-                </h2>
+            <div class="container">
+              <div class="columns">
+                <div class="column is-1"></div>
+                <div class="column is-4">
+                  <h1 class="title is-1">
+                      Edumame
+                  </h1>
+                  <h2 class="subtitle is-3">
+                      quirky and cool tagline goes here
+                  </h2>
+                  <a class="button is-white is-medium" href="{{pathFor "/login"}}">
+                      <span>Sign in</span>
+                  </a>
+                  <a class="button is-secondary is-medium" href="{{pathFor "/register"}}">                      <span>Register</span>
+                  </a>
+                </div>
+                <div class="column is-7">
+                  <img src="/images/screenshot.png" />
+                </div>
+              </div>
             </div>
         </div>
     </section>
-    <div class="hero-cta">
-        <nav class="level">
-            <div class="level-item has-text-centered">
-                <p class="title">
-                    <a class="button is-primary" href="{{pathFor "/login"}}">
-                        <span class="icon"><i class="fa fa-sign-in"></i></span>
-                        <span>Sign in</span>
-                    </a>
-
-                    <a class="button is-info" href="{{pathFor "/register"}}">
-                        <span class="icon"><i class="fa fa-user-plus"></i></span>
-                        <span>Register</span>
-                    </a>
-                </p>
-            </div>
-        </nav>
-    </div>
     <footer class="footer">
         <div class="container">
             <div class="content has-text-centered">
                 <p>
-                    <strong>Platform</strong>. Made with ♡ in Pennapps.
+                    <strong>Edumame</strong>. Made with ♡ at PennApps XV.
                 </p>
             </div>
         </div>
