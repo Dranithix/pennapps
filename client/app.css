@@ -222,5 +222,10 @@ a {
 .assessment-container li{
     margin: 7px;
     cursor: pointer;
+    list-style: none;
+}
+
+.assessment-container .fa {
+    font-size: 10px;
 }
 
