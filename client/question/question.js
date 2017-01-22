@@ -12,7 +12,9 @@ Template.question.viewmodel({
         Meteor.subscribe('exams.view', FlowRouter.getParam("exam"));
         Meteor.subscribe('comments.view', FlowRouter.getParam("exam"), FlowRouter.getParam("question"));
 
-        this.exam(Exams.findOne({_id: new Meteor.Collection.ObjectID(FlowRouter.getParam("exam"))}));
+        console.log(FlowRouter.getParam("exam"))
+
+        this.exam(Exams.findOne({_id: FlowRouter.getParam("exam")}));
 
         if (this.exam()) {
             this.question(this.exam().questions[parseInt(FlowRouter.getParam("question"))])
