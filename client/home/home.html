@@ -1,6 +1,6 @@
 <template name="home">
     <div class="columns is-gapless" style="height: 100%; background-color: white;">
-        <div class="column is-3" style="box-shadow: -4px 8px 12px -2px rgba(0,0,0,0.4);">
+        <div class="column is-3 custom-green" style="box-shadow: -4px 8px 12px -2px rgba(0,0,0,0.4);">
 
             <div style="padding: 16px">
                 <h4 class="title is-4 has-text-centered">Your Progress</h4>
@@ -16,24 +16,24 @@
             <section class="hero">
                 <div class="hero-body" style="padding-bottom: 8px; padding-top: 8px;">
                     <div class="content" style="padding: 16px;">
-                        <p class="title is-5">Simple Derivatives</p>
-                        <p class="subtitle is-6">Complete first and second derivatives.</p>
+                        <p class="title is-5">Find an online tutor</p>
+                        <p class="subtitle is-6">get started.</p>
                     </div>
                 </div>
             </section>
 
-            <section class="hero is-primary">
+            <section class="hero">
                 <div class="hero-body" style="padding-bottom: 8px; padding-top: 8px;">
                     <div class="content" style="padding: 16px;">
-                        <p class="title is-5">Points of Inflection</p>
-                        <p class="subtitle is-6">Find the points of inflection using the second derivative.</p>
+                        <p class="title is-5">See who is around you</p>
+                        <p class="subtitle is-6">get started.</p>
                     </div>
                 </div>
             </section>
-
         </div>
-        <div class="column is-9" style="padding: 16px; overflow-y: auto;">
-            <div class="questions content">
+        <div class="column is-9 main-container" style="padding: 16px;">
+            <h4 class="title is-4">Top Questions</h4>
+            <div class="questions content is-centered">
                 {{#each questions}}
                     {{> questionRow}}
                 {{/each}}
