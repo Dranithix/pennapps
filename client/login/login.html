@@ -8,7 +8,7 @@
                         <h1 class="title">
                             Login
                         </h1>
-                        <div class="box">
+                        <div class="box animated flipInX">
                             <label class="label">Email</label>
                             <p class="control">
                                 <input class="input" type="text" placeholder="jsmith@example.org" {{b "value: email"}}>
@@ -20,7 +20,7 @@
                             <hr>
                             <p class="control">
                                 <button class="button is-primary" {{b "click: login"}}>Login</button>
-                                <button class="button is-default">Cancel</button>
+                                <button class="button is-default" {{b "click: cancel"}}>Cancel</button>
                             </p>
                             <h2 {{b "if: error"}} style="color: red" class="subtitle">{{error}}</h2>
                         </div>
@@ -43,7 +43,7 @@
                         <h1 class="title">
                             Register an Account
                         </h1>
-                        <div class="box">
+                        <div class="box animated flipInX">
                             <label class="label">Email</label>
                             <p class="control">
                                 <input class="input" type="text" placeholder="jsmith@example.org" {{b "value: email"}}>
@@ -71,6 +71,7 @@
                             <hr>
                             <p class="control">
                                 <button class="button is-primary" {{b "click: register"}}>Register</button>
+                                <button class="button is-default" {{b "click: cancel"}}>Cancel</button>
                             </p>
                             <h2 {{b "if: error"}} style="color: red" class="subtitle">{{error}}</h2>
                         </div>
