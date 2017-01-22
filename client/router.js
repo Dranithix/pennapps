@@ -66,3 +66,9 @@ userRoutes.route('/classroom', {
         BlazeLayout.render('app', {content: 'classroom'});
     }
 })
+
+userRoutes.route('/search/:query', {
+    action: (params, queryParams) => {
+        BlazeLayout.render('app', {content: 'search'});
+    }
+})

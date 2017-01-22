@@ -76,6 +76,14 @@ Meteor.methods({
         const obj = Exams.findOne(new Meteor.Collection.ObjectID(e));
         return {exam: obj, question: obj.questions[qid]};
     },
+    'question.search': function (query) {
+        let exams = Exams.find({}).fetch();
+        exams = _.map(exams, exam  => {
+            exam.questions = _.filter(exam.questions, question => question.question.includes(query));
+            return exam;
+        })
+        return exams;
+    },
     'exam.mine': function (term) {
         const extractPDF = Meteor.wrapAsync(textract.fromUrl);
         let searchResults = search(term + ' sample exam test multiple choice questions site:.edu filetype:pdf');
