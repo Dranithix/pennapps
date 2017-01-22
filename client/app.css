@@ -213,3 +213,14 @@ a {
     border-right: 30px solid #6FE0B8;
     margin-top: 0px !important;
 }
+
+.assessment-dd-label {
+    color: #6FE0B8;
+    font-weight: 600;
+}
+
+.assessment-container li{
+    margin: 7px;
+    cursor: pointer;
+}
+
