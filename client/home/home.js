@@ -20,7 +20,7 @@ Template.home.viewmodel({
             {
                 type: 'pie',
                 data: {
-                    labels: ["Progress", "Todo"],
+                    labels: ["Progress", "To do"],
                     datasets: [
                         {
                             label: "Percentage",
