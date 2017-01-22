@@ -1,7 +1,6 @@
 import Chart from "chart.js";
 
 const names = [
-    'John Aby',
     'Abi Lori',
     'Abie Mila',
     'Laurie Sia',
@@ -76,7 +75,6 @@ const names = [
 ];
 
 const thumbnails = [
-    'https://randomuser.me/api/portraits/men/15.jpg',
     'https://randomuser.me/api/portraits/women/55.jpg',
     'https://randomuser.me/api/portraits/women/78.jpg',
     'https://randomuser.me/api/portraits/women/27.jpg',
