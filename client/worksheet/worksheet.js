@@ -5,9 +5,26 @@
 let lastTopic = "";
 Template.worksheet.viewmodel({
     topic: '',
-    autorun() {
+    questions: null,
+    createWorksheet() {
         if (this.topic() !== lastTopic) {
+            console.log(this.topic());
+            Meteor.call('exam.mine', this.topic(), (err, res) => {
+                let questions = [];
+                let index = 1;
+                _.each(res, (exams, i) => {
+                    _.each(exams.q, (question) => {
+                        question.question = (index++) + ". " + question.question;
+                        question.choices = _.map(question.choices, (choice, x) => "(" + (x + 1) + ") " + choice)
+                        question.tags = res[i].tags;
+                        questions.push(question)
+                    })
+                })
+
+                console.log(questions)
+                this.questions(questions);
+            })
             lastTopic = this.topic();
         }
-    },
+    }
 })

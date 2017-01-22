@@ -25,33 +25,33 @@
 
         <div class="column is-6">
             <h4 class="title is-4">2 Answers</h4>
-                    <div style="overflow-y: auto">
-                        {{#each comments}}
-                        <div class="columns">
-                            <div class="column is-2">
-                                <div class="align-contain rating-container">
-                                    <div {{b "click: parent.voteUp(this)"}} class="vote up">
-                                        <i class="fa fa-angle-up"></i>
-                                    </div>
-                                    <div class="stat">
-                                        <span class="score" {{b "text: parent.numVotes(this)"}}></span>
-                                    </div>
-                                    <div {{b "click: parent.voteDown(this)"}} class="vote inactive">
-                                        <i class="fa fa-angle-down"></i>
-                                    </div>
+            <div style="overflow-y: auto">
+                {{#each comments}}
+                    <div class="columns">
+                        <div class="column is-2">
+                            <div class="align-contain rating-container">
+                                <div {{b "click: parent.voteUp(this)"}} class="vote up">
+                                    <i class="fa fa-angle-up"></i>
+                                </div>
+                                <div class="stat">
+                                    <span class="score" {{b "text: parent.numVotes(this)"}}></span>
+                                </div>
+                                <div {{b "click: parent.voteDown(this)"}} class="vote inactive">
+                                    <i class="fa fa-angle-down"></i>
                                 </div>
                             </div>
-
-                            <div class="column is-5 has-text-left">
-                                <span>{{text}}</span>
-                            </div>
-                            <div class="column is-5 has-text-centered">
-                                <div>31 seconds ago</div>
-                                <div class="">By helfi92</div>
-                            </div>
                         </div>
-                    {{/each}}
+
+                        <div class="column is-5 has-text-left">
+                            <span>{{text}}</span>
+                        </div>
+                        <div class="column is-5 has-text-centered">
+                            <div>31 seconds ago</div>
+                            <div class="">By helfi92</div>
+                        </div>
                     </div>
+                {{/each}}
+            </div>
         </div>
     </div>
 </template>
@@ -85,6 +85,32 @@
                         <p style="margin-top: 2.5rem;">
                             <span class="tag is-light" style="margin-right: 0.25rem;">Light</span><span
                                 class="tag is-light">Tag 2</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+</template>
+
+<template name="questionRowPlain">
+    <article class="media columns is-centered" style="cursor: pointer;">
+        <div class="column is-8" style="margin-top: 2rem;">
+            <div class="q-container">
+                <div style="cursor: pointer;">
+                    <div class="content">
+                        <p>
+                        <p class="latex-q">{{question}}</p>
+                        <ul class="mc-list latex-mc">
+                            {{#each choices}}
+                                <li>{{this}}</li>
+                            {{/each}}
+                        </ul>
+                        </p>
+                        <p style="margin-top: 2.5rem;">
+                            {{#each tags}}
+                                <span class="tag is-light" style="margin-right: 0.25rem; margin-bottom: 0.5rem;">{{label}}</span>
+                            {{/each}}
                         </p>
                     </div>
                 </div>

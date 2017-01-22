@@ -5,77 +5,21 @@ import request from "request";
 const excludedTerms = ['instructors'];
 
 const search = (term) => {
-    google.resultsPerPage = 10;
+    google.resultsPerPage = 5;
     let nextCounter = 0;
     let results = [];
 
-    return new Promise((resolve, reject) => {
-        google(term, function (err, res) {
-            if (err) return reject(err);
+    const googleSync = Meteor.wrapAsync(google)
+    const res = googleSync(term);
+    for (let i = 0; i < res.links.length; ++i) {
+        const link = res.links[i].href;
 
-            for (let i = 0; i < res.links.length; ++i) {
-                const link = res.links[i].href;
+        if (link.match(/pdf$/)) {
+            results.push(link);
+        }
 
-                if (link.match(/pdf$/)) {
-                    results.push(link);
-                } else {
-                    console.log(link);
-                }
-
-            }
-            return resolve(results);
-        });
-    });
-};
-
-const nlp = (text) => {
-    const body = {
-        "apiKey": "DEMO",
-        "extractors": ["entities", "topics"].join(","),
-        "entityExtractionOptions[filterEntitiesToDBPediaTypes]": null,
-        "entityExtractionOptions[filterEntitiesToFreebaseTypes]": null,
-        "entityExtractionOptions[allowOverlap]": null,
-        "text": text,
-        "classifiers": "textrazor_iab"
-    };
-
-    const headers = {
-        "Host": "www.textrazor.com",
-        "Origin": "https://www.textrazor.com",
-        "Referer": "https://www.textrazor.com/demo",
-        "Content-Type": "application/x-www-form-urlencoded"
-    };
-
-    const options = {
-        url: 'https://www.textrazor.com/demo/process/',
-        headers: headers,
-        method: 'POST',
-        form: body
-    };
-
-    return new Promise((resolve, reject) => {
-        const callback = (error, response, body) => {
-            if (!error && response.statusCode == 200) {
-                const info = JSON.parse(body);
-
-                return resolve(info);
-            } else {
-                return reject(error);
-            }
-        };
-
-        request('https://www.textrazor.com/demo/process/', options, callback);
-    });
-};
-
-const extractText = (url) => {
-    return new Promise((resolve, reject) => {
-        textract.fromUrl(url, (error, text) => {
-            if (error) return reject(error);
-
-            return resolve(text);
-        });
-    });
+    }
+    return results.slice(0, 5);
 };
 
 const hasExcludedTerm = (text) => {
@@ -101,7 +45,7 @@ const getQuestions = (text) => {
 
     if (firstCount > secondCount) {
         let exam = text.match(/\b(\d{1,2})\.\s\D*(?:(?!\b\d{1,3}\.\s)\d+\D*)*/g);
-        exam = _.filter(exam, exam => !/[@]*(SAMPLE)/g.test(exam) && exam.length > 150)
+        exam = _.filter(exam, exam => exam.length > 150)
 
         _.each(exam, exam => {
             let question = exam.replace(/\d+[(.]\s*/g, '');
@@ -124,35 +68,6 @@ const getQuestions = (text) => {
     return questions
 };
 
-const filter = (obj) => {
-    return new Promise((resolve, reject) => {
-        let {url, category} = obj;
-        extractText(url).then(text => {
-            if (hasExcludedTerm(text)) {
-                resolve(null);
-            }
-
-            nlp(text).then(nlp => {
-                nlp.response.topics.filter(elem => {
-                    return elem.label.includes('Exam') && elem.score === 1;
-                });
-
-
-                const questions = getQuestions(text);
-                if (questions.length) {
-                    resolve({
-                        url,
-                        category,
-                        text,
-                        tags: _.filter(nlp.response.topics, topic => topic.score === 1),
-                        questions
-                    });
-                }
-            }).catch(resolve);
-        });
-    })
-};
-
 Meteor.methods({
     'subjects': function () {
         const subjects = _.groupBy(Exams.find({}).fetch(), 'category');
@@ -163,14 +78,48 @@ Meteor.methods({
         return {exam: obj, question: obj.questions[qid]};
     },
     'exam.mine': function (term) {
-        search(term + ' sample exam test questions site:.edu filetype:pdf')
-            .then(urls => {
-                urls = _.map(urls, url => {
-                    return {url, category: term}
+        const extractPDF = Meteor.wrapAsync(textract.fromUrl);
+        let searchResults = search(term + ' sample exam test multiple choice questions site:.edu filetype:pdf');
+
+        let questions = [];
+        _.each(searchResults, url => {
+            const text = extractPDF(url);
+
+            const nlpResponse = HTTP.post("https://www.textrazor.com/demo/process/", {
+                headers: {
+                    Host: "www.textrazor.com",
+                    Origin: "https://www.textrazor.com",
+                    Referer: "https://www.textrazor.com/demo",
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                params: {
+                    apiKey: "DEMO",
+                    extractors: ["entities", "topics"].join(","),
+                    "entityExtractionOptions[filterEntitiesToDBPediaTypes]": "null",
+                    "entityExtractionOptions[filterEntitiesToFreebaseTypes]": "null",
+                    "entityExtractionOptions[allowOverlap]": "null",
+                    text,
+                    classifiers: "textrazor_iab"
+                }
+            });
+            const nlp = nlpResponse && nlpResponse.data && nlpResponse.data.response;
+            if (nlp && nlp.topics) {
+                nlp.topics = _.filter(nlp.topics, elem => {
+                    return elem.score === 1;
                 });
 
-                console.log(urls);
-                // return Promise.all(urls.map(filter))
-            })
+                const q = getQuestions(text);
+                if (q.length) {
+                    questions.push({
+                        url,
+                        category: term,
+                        text,
+                        tags: _.filter(nlp.topics, topic => topic.score === 1).slice(0, 5),
+                        q
+                    });
+                }
+            }
+        });
+        return questions;
     }
 });
