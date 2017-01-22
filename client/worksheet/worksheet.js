@@ -2,18 +2,26 @@
  * Created by Kenta Iwasaki on 1/21/2017.
  */
 import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
 
 let lastTopic = "";
 Template.worksheet.viewmodel({
     topic: '',
     questions: null,
+    topicSelected: false,
+    autorun() {
+        const topic = FlowRouter.getParam("topic");
+        this.topic(topic);
+        if (topic) {
+            this.topicSelected(true);
+            this.createWorksheet();
+        } else {
+            this.topicSelected(false);
+        }
+    },
     createWorksheet() {
         if (this.topic() !== lastTopic) {
-            console.log(this.topic());
             $("#worksheetButton").toggleClass("is-disabled", true).toggleClass("is-loading", true);
             Meteor.call('exam.mine', this.topic(), (err, res) => {
-                console.log(res);
                 let questions = [];
                 let index = 1;
                 _.each(res, (exam, i) => {
@@ -57,15 +65,8 @@ Template.worksheet.viewmodel({
                 pdf.save('two-by-four.pdf')
             });
         })
+    },
+    shareWorksheet() {
 
-        // html2canvas($(".questions")[0], {
-        //     onrendered: function(canvas) {
-        //         var imgData = canvas.toDataURL(
-        //             'image/png');
-        //         var doc = new jsPDF('p', 'mm');
-        //         doc.addImage(imgData, 'PNG', 0, 0, canvas.width / 8, canvas.height / 8);
-        //         doc.save('sample-file.pdf');
-        //     }
-        // });
     }
 })
