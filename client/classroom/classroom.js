@@ -169,7 +169,7 @@ Template.classroom.viewmodel({
                             {
                                 label: "Percentage",
                                 data: [power, 100 - power],
-                                backgroundColor: ["#6FE0B8"],
+                                backgroundColor: ['#'+(Math.random()*0xFFFFFF<<0).toString(16)],
                                 hoverBackgroundColor: ["#50C692"]
                             }
                         ]
