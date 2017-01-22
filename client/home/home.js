@@ -26,7 +26,7 @@ Template.home.viewmodel({
                             label: "Percentage",
                             data: [65, 35],
                             backgroundColor: ["#6FE0B8"],
-                            hoverBackgroundColor: ["#FF6384"]
+                            hoverBackgroundColor: ["#50C692"]
                         }
                     ]
                 },
