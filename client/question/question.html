@@ -10,13 +10,13 @@
             <div style="margin-top:3rem">
                 <h4 class="title is-4">Your Answer</h4>
                 <span class="control is-fullwidth">
-                            <textarea class="textarea"></textarea>
-                        </span>
+                    <textarea id="comment-input" class="textarea"></textarea>
+                </span>
                 <br/>
                 <nav class="level is-pulled-right">
                     <div class="level-right">
                         <div class="level-item">
-                            <a class="button is-info">Comment</a>
+                            <a {{b "click: createComment"}} class="button is-info">Comment</a>
                         </div>
                     </div>
                 </nav>
@@ -25,14 +25,33 @@
 
         <div class="column is-6">
             <h4 class="title is-4">2 Answers</h4>
-            <div class="control comment">
-                <div>Watch me code! Now watch me git push! Watch me code! Now watch me git push! Watch me code! Now watch me git push!</div>
-                <hr />
-                <div class="is-pulled-right">
-                    <div>Answered 31 seconds ago</div>
-                    <div class="is-pulled-right">By helfi92</div>
-                </div>
-            </div>
+                    <div style="overflow-y: auto">
+                        {{#each comments}}
+                        <div class="columns">
+                            <div class="column is-2">
+                                <div class="align-contain rating-container">
+                                    <div {{b "click: parent.voteUp(this)"}} class="vote up">
+                                        <i class="fa fa-angle-up"></i>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="score" {{b "text: parent.numVotes(this)"}}></span>
+                                    </div>
+                                    <div {{b "click: parent.voteDown(this)"}} class="vote inactive">
+                                        <i class="fa fa-angle-down"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="column is-5 has-text-left">
+                                <span>{{text}}</span>
+                            </div>
+                            <div class="column is-5 has-text-centered">
+                                <div>31 seconds ago</div>
+                                <div class="">By helfi92</div>
+                            </div>
+                        </div>
+                    {{/each}}
+                    </div>
         </div>
     </div>
 </template>

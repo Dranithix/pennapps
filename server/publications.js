@@ -7,6 +7,9 @@ Meteor.publish('exams.all', function() {
 })
 
 Meteor.publish('exams.view', function(id) {
-    console.log(Exams.find({_id: new Meteor.Collection.ObjectID(id)}).count())
     return Exams.find({_id: new Meteor.Collection.ObjectID(id)});
+})
+
+Meteor.publish('comments.view', function(exam, question) {
+    return Comments.find({exam, question});
 })

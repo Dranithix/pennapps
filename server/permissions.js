@@ -11,3 +11,12 @@ Exams.allow({
         return false;
     },
 })
+
+Comments.allow({
+    insert: () => {
+        return true;
+    },
+    update: () => {
+        return true;
+    }
+})
