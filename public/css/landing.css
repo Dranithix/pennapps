@@ -53,3 +53,7 @@ a.is-secondary, a.is-secondary:visited {
 a.is-white, a.is-white:visited {
     color: #1ab188 !important;
 }
+
+#hero-left-column {
+  padding-left: 3.5em;
+}
