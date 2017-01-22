@@ -3,7 +3,7 @@ import Chart from "chart.js";
 Template.assessments.viewmodel({
     onRendered() {
         _.each($(".progressChart"), element => {
-            const power = parseInt(Math.random() * 100);
+          const power = parseInt(Math.random() * 100);
             const progressChart = new Chart(
                 element,
                 {
@@ -14,7 +14,7 @@ Template.assessments.viewmodel({
                             {
                                 label: "Percentage",
                                 data: [power, 100 - power],
-                                backgroundColor: ["#6FE0B8"],
+                                backgroundColor: ['#'+(Math.random()*0xFFFFFF<<0).toString(16)],
                                 hoverBackgroundColor: ["#50C692"]
                             }
                         ]
