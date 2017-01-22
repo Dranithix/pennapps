@@ -16,9 +16,13 @@
 
         </div>
 
-        <div class="columns is-centered" {{b "if: questions, click: exportPDF"}}>
+        <div class="columns is-centered" {{b "if: questions"}}>
             <div class="column is-8">
-                <div class="button is-info">Export to PDF</div>
+                <div class="button is-info" {{b "click: exportPDF"}}>Export to PDF</div>
+                <div id="shareButton" class="button is-primary" {{b
+                        "if: topicSelected, click: shareWorksheet"}}>
+                    Send to student...
+                </div>
             </div>
         </div>
 

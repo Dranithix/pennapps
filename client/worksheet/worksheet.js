@@ -7,10 +7,16 @@ let lastTopic = "";
 Template.worksheet.viewmodel({
     topic: '',
     questions: null,
+    topicSelected: false,
     autorun() {
         const topic = FlowRouter.getParam("topic");
         this.topic(topic);
-        if (topic) this.createWorksheet();
+        if (topic) {
+            this.topicSelected(true);
+            this.createWorksheet();
+        } else {
+            this.topicSelected(false);
+        }
     },
     createWorksheet() {
         if (this.topic() !== lastTopic) {
@@ -59,5 +65,8 @@ Template.worksheet.viewmodel({
                 pdf.save('two-by-four.pdf')
             });
         })
+    },
+    shareWorksheet() {
+
     }
 })
