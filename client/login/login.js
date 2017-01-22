@@ -14,6 +14,9 @@ Template.login.viewmodel({
             if (err) this.error(err.reason)
             else FlowRouter.redirect('/home');
         })
+    },
+    cancel: function (event) {
+        FlowRouter.redirect('/');
     }
 });
 
@@ -49,5 +52,8 @@ Template.register.viewmodel({
             if (err) this.error(err);
             else FlowRouter.redirect("/home");
         })
+    },
+    cancel: function (event) {
+        FlowRouter.redirect('/');
     }
 })

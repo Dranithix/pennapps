@@ -5,17 +5,23 @@
                 <p class="control has-addons has-addons-right" style="width: 100% !important;">
                     <input {{b "value: topic, throttle: 400"}} class="input has-text-centered is-large is-primary"
                                                                type="text"
-                                                               placeholder="Search for exam papers or enter a topic..." style="width: 100%; !important">
-                    <div id="worksheetButton" class="button is-primary is-large" {{b "click: createWorksheet"}}>
-                        Generate Worksheet
-                    </div>
+                                                               placeholder="Search for exam papers or enter a topic..."
+                                                               style="width: 100%; !important">
+                <div id="worksheetButton" class="button is-primary is-large" {{b "click: createWorksheet"}}>
+                    Generate Worksheet
+                </div>
                 </p>
-                <br/>
-                <a class="is-6 heading" style="margin: 8px;">... or upload your own set of exam papers. <i
-                        class="fa fa-upload" style="font-size: 16px;"></i></a>
             </div>
 
+
         </div>
+
+        <div class="columns is-centered" {{b "if: questions, click: exportPDF"}}>
+            <div class="column is-8">
+                <div class="button is-info">Export to PDF</div>
+            </div>
+        </div>
+
 
         <div class="is-centered questions">
             {{#each questions}}
