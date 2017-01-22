@@ -9,6 +9,7 @@ Template.worksheet.viewmodel({
     createWorksheet() {
         if (this.topic() !== lastTopic) {
             console.log(this.topic());
+            $("#worksheetButton").toggleClass("is-disabled", true).toggleClass("is-loading", true);
             Meteor.call('exam.mine', this.topic(), (err, res) => {
                 let questions = [];
                 let index = 1;
@@ -23,6 +24,7 @@ Template.worksheet.viewmodel({
 
                 console.log(questions)
                 this.questions(questions);
+                $("#worksheetButton").toggleClass("is-disabled", false).toggleClass("is-loading", false);
             })
             lastTopic = this.topic();
         }
