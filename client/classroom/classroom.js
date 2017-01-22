@@ -178,8 +178,8 @@ Template.classroom.viewmodel({
                 }
             )
         })
-
     },
+
     createAssessment() {
         FlowRouter.go("/worksheet/trigonometry");
     }
