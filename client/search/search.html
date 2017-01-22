@@ -1,5 +1,9 @@
 <template name="search">
-<section class="section">
-
-</section>
+    <div class="is-centered questions">
+        {{#each questions}}
+            <div {{b "click: gotoQuestion(this)"}}>
+                {{> questionRowPlain}}
+            </div>
+        {{/each}}
+    </div>
 </template>
