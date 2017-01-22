@@ -68,6 +68,8 @@ Template.home.viewmodel({
             }
         }
 
+        console.log(index)
+
         let update = {};
         update[`questions.${index}.votes`] = Meteor.userId();
 
@@ -79,9 +81,14 @@ Template.home.viewmodel({
                     Exams.update({_id: q.exam}, {$pull: update});
                 } else {
                     Exams.update({_id: q.exam}, {$push: update});
+
                 }
             }
         }
+    },
+
+    votedUpClass(obj) {
+      return _.contains(obj.votes, Meteor.userId());
     },
 
     voteDown() {

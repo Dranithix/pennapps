@@ -163,3 +163,15 @@ a {
 .custom-nav {
     padding: 0 10px;
 }
+
+.up {
+    color: gray;
+}
+
+.voteActive {
+    color: green;
+}
+
+.voteDownActive {
+    color :red;
+}

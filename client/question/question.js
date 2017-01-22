@@ -31,6 +31,10 @@ Template.question.viewmodel({
         return Comments.find({}).count();
     },
 
+    votedUpClass(obj) {
+        return _.contains(obj.votes, Meteor.userId());
+    },
+
     voteUp(q) {
         const index = parseInt(FlowRouter.getParam("question"));
 

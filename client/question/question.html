@@ -61,7 +61,7 @@
         <div class="column is-8" style="margin-top: 2rem;">
             <div class="q-container">
                 <div class="align-contain rating-container">
-                    <div {{b "click: parent.voteUp(this)"}} class="vote up">
+                    <div class="vote up " {{b "click: parent.voteUp(this), class: {voteActive: parent.votedUpClass(this)}"}}>
                         <i class="fa fa-angle-up"></i>
                     </div>
                     <div class="stat">
