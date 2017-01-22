@@ -8,6 +8,7 @@ Template.app.viewmodel({
     onCreated() {
         const self = this;
         Meteor.call('subjects', (err, res) => {
+            console.log(res);
             this.subjects(res);
             this.subject(this.subjects()[0]);
         })

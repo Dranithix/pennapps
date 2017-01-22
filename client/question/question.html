@@ -83,8 +83,9 @@
                         </ul>
                         </p>
                         <p style="margin-top: 2.5rem;">
-                            <span class="tag is-light" style="margin-right: 0.25rem;">Light</span><span
-                                class="tag is-light">Tag 2</span>
+                            {{#each tags}}
+                                <span class="tag is-light" style="margin-right: 0.25rem; margin-bottom: 0.5rem;">{{label}}</span>
+                            {{/each}}
                         </p>
                     </div>
                 </div>

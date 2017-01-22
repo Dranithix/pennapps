@@ -37,15 +37,16 @@ Template.home.viewmodel({
 
     autorun() {
         if (this.parent().subject()) {
-            const exams = Exams.find({category: this.parent().subject()}).fetch();
+            const exams = Exams.find({categories: {$in: [this.parent().subject()]}}).fetch();
+            console.log(exams)
 
             if (exams.length) {
                 let questions = [];
-                _.each(exams, exam => questions = questions.concat(_.map(exam.questions, (question, index) => {
+                _.each(exams, (exam, i) => questions = questions.concat(_.map(exam.questions, (question, index) => {
                     question.url = exam.url;
                     question.choices = _.map(question.choices, (choice, index) => choice = "(" + (index + 1) + ") " + choice);
                     question.exam = exam._id;
-
+                    question.tags = exam.tags;
                     return question;
                 })));
                 this.questions(questions);

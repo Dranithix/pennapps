@@ -11,10 +11,11 @@ Template.worksheet.viewmodel({
             console.log(this.topic());
             $("#worksheetButton").toggleClass("is-disabled", true).toggleClass("is-loading", true);
             Meteor.call('exam.mine', this.topic(), (err, res) => {
+                console.log(res);
                 let questions = [];
                 let index = 1;
-                _.each(res, (exams, i) => {
-                    _.each(exams.q, (question) => {
+                _.each(res, (exam, i) => {
+                    _.each(exam.questions, (question) => {
                         question.question = (index++) + ". " + question.question;
                         question.choices = _.map(question.choices, (choice, x) => "(" + (x + 1) + ") " + choice)
                         question.tags = res[i].tags;

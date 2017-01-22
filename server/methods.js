@@ -55,7 +55,7 @@ const getQuestions = (text) => {
 
                 choices = _.filter(choices, choice => choice.length < 50);
 
-                if (choices.length > 2 && choices.length < 5 && question.length < 1000) {
+                if (choices.length > 2 && choices.length < 5 && question.length < 1000 && question.charAt(0) == question.charAt(0).toUpperCase()) {
                     questions.push({
                         question: question.replace(/ [A-Ea-e\d][.)] .*/g, ''),
                         choices
@@ -69,8 +69,8 @@ const getQuestions = (text) => {
 
 Meteor.methods({
     'subjects': function () {
-        const subjects = _.groupBy(Exams.find({}).fetch(), 'category');
-        return Object.keys(subjects);
+        const subjects = _.flatten(_.pluck(Exams.find({}).fetch(), 'categories'));
+        return _.sortBy(_.uniq(subjects), val => val);
     },
     'question.view': function (e, qid) {
         const obj = Exams.findOne(new Meteor.Collection.ObjectID(e));
@@ -80,49 +80,59 @@ Meteor.methods({
         const extractPDF = Meteor.wrapAsync(textract.fromUrl);
         let searchResults = search(term + ' sample exam test multiple choice questions site:.edu filetype:pdf');
 
-        let questions = [];
+        let exams = [];
         _.each(searchResults, url => {
             try {
-                const text = extractPDF(url);
+                let exam = null;
+                if (exam = Exams.findOne({url})) {
+                    exams = exams.concat(exam);
+                } else {
+                    const text = extractPDF(url);
 
-                const nlpResponse = HTTP.post("https://www.textrazor.com/demo/process/", {
-                    headers: {
-                        Host: "www.textrazor.com",
-                        Origin: "https://www.textrazor.com",
-                        Referer: "https://www.textrazor.com/demo",
-                        "Content-Type": "application/x-www-form-urlencoded"
-                    },
-                    params: {
-                        apiKey: "DEMO",
-                        extractors: ["entities", "topics"].join(","),
-                        "entityExtractionOptions[filterEntitiesToDBPediaTypes]": "null",
-                        "entityExtractionOptions[filterEntitiesToFreebaseTypes]": "null",
-                        "entityExtractionOptions[allowOverlap]": "null",
-                        text,
-                        classifiers: "textrazor_iab"
-                    }
-                });
-                const nlp = nlpResponse && nlpResponse.data && nlpResponse.data.response;
-                if (nlp && nlp.topics) {
-                    nlp.topics = _.filter(nlp.topics, elem => {
-                        return elem.score === 1;
-                    });
-
-                    const q = getQuestions(text);
-                    if (q.length) {
-                        questions.push({
-                            url,
-                            category: term,
+                    const nlpResponse = HTTP.post("https://www.textrazor.com/demo/process/", {
+                        headers: {
+                            Host: "www.textrazor.com",
+                            Origin: "https://www.textrazor.com",
+                            Referer: "https://www.textrazor.com/demo",
+                            "Content-Type": "application/x-www-form-urlencoded"
+                        },
+                        params: {
+                            apiKey: "DEMO",
+                            extractors: ["entities", "topics"].join(","),
+                            "entityExtractionOptions[filterEntitiesToDBPediaTypes]": "null",
+                            "entityExtractionOptions[filterEntitiesToFreebaseTypes]": "null",
+                            "entityExtractionOptions[allowOverlap]": "null",
                             text,
-                            tags: _.filter(nlp.topics, topic => topic.score === 1).slice(0, 5),
-                            q
+                            classifiers: "textrazor_iab"
+                        }
+                    });
+                    const nlp = nlpResponse && nlpResponse.data && nlpResponse.data.response;
+                    if (nlp && nlp.topics) {
+                        nlp.topics = _.filter(nlp.topics, elem => {
+                            return elem.score === 1;
                         });
+                        const categories = _.map(_.filter(nlp.categories, category => category.score >= 0.5), category => category.label.replace(">", " > "));
+
+                        const q = getQuestions(text);
+                        if (q.length) {
+                            const data = {
+                                url,
+                                categories,
+                                text,
+                                tags: _.filter(nlp.topics, topic => topic.score === 1).slice(0, 5),
+                                questions: q
+                            };
+
+                            Exams.insert(data);
+                            exams.push(data);
+                        }
                     }
                 }
             } catch (ex) {
 
             }
+
         });
-        return questions;
+        return exams;
     }
 });
