@@ -5,6 +5,7 @@
 Template.app.viewmodel({
     subject: null,
     subjects: [],
+    searchQuery: "",
     onCreated() {
         const self = this;
         Meteor.call('subjects', (err, res) => {
