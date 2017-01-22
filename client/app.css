@@ -159,3 +159,7 @@ a {
     border-left: 15px solid #6FE0B8;
     border-right: 30px solid #6FE0B8;
 }
+
+.custom-nav {
+    padding: 0 10px;
+}
