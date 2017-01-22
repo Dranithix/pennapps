@@ -120,3 +120,15 @@ a {
 .q-container {
     display: flex;
 }
+
+.answers {
+    margin-top: 2rem;
+}
+
+.ans-comm-section {
+    font-family: Helvetica, sans-serif;
+}
+
+.question-container {
+    padding-top: 20px !important;
+}

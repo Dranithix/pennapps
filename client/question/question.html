@@ -1,11 +1,38 @@
 <template name="question">
-    <div class="section">
-        <p class="heading">QUESTION</p>
-        <div class="questions">
+    <div class="columns section question-container">
+        <div class="column is-6">
+            <h4 class="title">Question</h4>
+            <section class="questions">
+                {{#with question}}
+                    {{> questionRow}}
+                {{/with}}
+            </section>
+            <div style="margin-top:3rem">
+                <h4 class="title is-4">Your Answer</h4>
+                <span class="control is-fullwidth">
+                            <textarea class="textarea"></textarea>
+                        </span>
+                <br/>
+                <nav class="level is-pulled-right">
+                    <div class="level-right">
+                        <div class="level-item">
+                            <a class="button is-info">Comment</a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
 
-            {{#with question}}
-                {{> questionRow}}
-            {{/with}}
+        <div class="column is-6">
+            <h4 class="title is-4">2 Answers</h4>
+            <div class="control comment">
+                <div>Watch me code! Now watch me git push! Watch me code! Now watch me git push! Watch me code! Now watch me git push!</div>
+                <hr />
+                <div class="is-pulled-right">
+                    <div>Answered 31 seconds ago</div>
+                    <div class="is-pulled-right">By helfi92</div>
+                </div>
+            </div>
         </div>
     </div>
 </template>

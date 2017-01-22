@@ -11,6 +11,7 @@ Template.question.viewmodel({
 
     if (this.exam()) {
       this.question(this.exam().questions[parseInt(FlowRouter.getParam("question"))])
+      this.question().choices = _.map(this.question().choices, (choice, index) => "(" + (index  + 1) + ") " + choice)
       this.question().exam = this.exam()._id;
     }
   },
