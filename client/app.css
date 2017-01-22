@@ -163,3 +163,7 @@ a {
 .custom-nav {
     padding: 0 10px;
 }
+
+.nav-menu a, .nav-menu a:visited {
+    color: #6FE0B8 !important;
+}
