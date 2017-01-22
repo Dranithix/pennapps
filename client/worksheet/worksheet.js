@@ -2,6 +2,8 @@
  * Created by Kenta Iwasaki on 1/21/2017.
  */
 import jsPDF from "jspdf";
+import swal from "sweetalert2";
+import "sweetalert2/dist/sweetalert2.min.css";
 
 let lastTopic = "";
 Template.worksheet.viewmodel({
@@ -67,6 +69,25 @@ Template.worksheet.viewmodel({
         })
     },
     shareWorksheet() {
-
+        swal({
+            title: 'Send to student?',
+            showCancelButton: true,
+            confirmButtonText: 'Submit',
+            showLoaderOnConfirm: true,
+            preConfirm: function (email) {
+                return new Promise(function (resolve, reject) {
+                    setTimeout(function () {
+                        resolve()
+                    }, 2000)
+                })
+            },
+            allowOutsideClick: false
+        }).then(function (email) {
+            swal({
+                type: 'success',
+                title: 'Sent to student!',
+                html: 'Worksheet has been sent.'
+            })
+        })
     }
 })
