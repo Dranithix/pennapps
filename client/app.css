@@ -179,3 +179,35 @@ a {
 .voteDownActive {
     color :red;
 }
+
+.student-avatar {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.student-avatar + div{
+    display:inline-block;
+    vertical-align: bottom;
+    line-height: 50px;
+    margin-left: 1rem;
+}
+
+.avatar-name {
+    font-weight: 600;
+}
+
+.classroom-list li {
+    padding: 1rem;
+}
+
+.classroom-list{
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.classroom-container {
+    border-left: 30px solid #6FE0B8;
+    border-right: 30px solid #6FE0B8;
+    margin-top: 0px !important;
+}

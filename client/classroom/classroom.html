@@ -1,5 +1,24 @@
 <template name="classroom">
-    <section class="section">
+    <section class="section columns classroom-container">
+        <div class="column is-4">
+            <h4>Students</h4>
+            <hr/>
+            <div>
+                <ul class="classroom-list">
+                    {{#each users}}
+                        <li>
+                            <div>
+                                <img class="student-avatar" src="{{thumbnail}}"/>
+                                <div><h3 class="avatar-name">{{name}}</h3></div>
+                            </div>
+                        </li>
+                    {{/each}}
 
+                </ul>
+            </div>
+        </div>
+        <div class="column is-8">
+            graph
+        </div>
     </section>
 </template>
