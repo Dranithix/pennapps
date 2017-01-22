@@ -3,10 +3,11 @@
  */
 Template.search.viewmodel({
     questions: null,
-    onCreated() {
+    autorun() {
         Meteor.subscribe('exams.all');
 
         const query = FlowRouter.getParam("query");
+
         Meteor.call('question.search', query, (err, res) => {
             if (!err) {
                 let questions = [];
@@ -25,7 +26,8 @@ Template.search.viewmodel({
         })
     },
     onRendered() {
-
+        const query = FlowRouter.getParam("query");
+        this.parent().searchQuery(query);
     },
     numVotes(question) {
         return question.votes && question.votes.length || 0;
