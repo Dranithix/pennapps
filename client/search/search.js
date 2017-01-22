@@ -13,7 +13,6 @@ Template.search.viewmodel({
                 let index = 1;
                 _.each(res, (exam, i) => {
                     _.each(exam.questions, (question) => {
-                        question.question = (index++) + ". " + question.question;
                         question.choices = _.map(question.choices, (choice, x) => "(" + (x + 1) + ") " + choice)
                         question.tags = res[i].tags;
                         question.exam = exam._id;
@@ -21,7 +20,6 @@ Template.search.viewmodel({
                     })
                 })
 
-                console.log(questions)
                 this.questions(questions);
             }
         })
@@ -34,11 +32,11 @@ Template.search.viewmodel({
     },
 
     gotoQuestion(question) {
-        console.log(question);
-
         let index = -1, questions = Exams.findOne({_id: question.exam}).questions;
+        console.log(question);
+        console.log(questions)
         for (let i = 0; i < questions.length; i++) {
-            if (questions[i].question == question.question) {
+            if (questions[i].question === question.question) {
                 index = i;
                 break;
             }
