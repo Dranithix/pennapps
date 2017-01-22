@@ -1,6 +1,5 @@
 import google from "google";
 import textract from "textract";
-import request from "request";
 
 const excludedTerms = ['instructors'];
 
@@ -83,41 +82,45 @@ Meteor.methods({
 
         let questions = [];
         _.each(searchResults, url => {
-            const text = extractPDF(url);
+            try {
+                const text = extractPDF(url);
 
-            const nlpResponse = HTTP.post("https://www.textrazor.com/demo/process/", {
-                headers: {
-                    Host: "www.textrazor.com",
-                    Origin: "https://www.textrazor.com",
-                    Referer: "https://www.textrazor.com/demo",
-                    "Content-Type": "application/x-www-form-urlencoded"
-                },
-                params: {
-                    apiKey: "DEMO",
-                    extractors: ["entities", "topics"].join(","),
-                    "entityExtractionOptions[filterEntitiesToDBPediaTypes]": "null",
-                    "entityExtractionOptions[filterEntitiesToFreebaseTypes]": "null",
-                    "entityExtractionOptions[allowOverlap]": "null",
-                    text,
-                    classifiers: "textrazor_iab"
-                }
-            });
-            const nlp = nlpResponse && nlpResponse.data && nlpResponse.data.response;
-            if (nlp && nlp.topics) {
-                nlp.topics = _.filter(nlp.topics, elem => {
-                    return elem.score === 1;
-                });
-
-                const q = getQuestions(text);
-                if (q.length) {
-                    questions.push({
-                        url,
-                        category: term,
+                const nlpResponse = HTTP.post("https://www.textrazor.com/demo/process/", {
+                    headers: {
+                        Host: "www.textrazor.com",
+                        Origin: "https://www.textrazor.com",
+                        Referer: "https://www.textrazor.com/demo",
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    params: {
+                        apiKey: "DEMO",
+                        extractors: ["entities", "topics"].join(","),
+                        "entityExtractionOptions[filterEntitiesToDBPediaTypes]": "null",
+                        "entityExtractionOptions[filterEntitiesToFreebaseTypes]": "null",
+                        "entityExtractionOptions[allowOverlap]": "null",
                         text,
-                        tags: _.filter(nlp.topics, topic => topic.score === 1).slice(0, 5),
-                        q
+                        classifiers: "textrazor_iab"
+                    }
+                });
+                const nlp = nlpResponse && nlpResponse.data && nlpResponse.data.response;
+                if (nlp && nlp.topics) {
+                    nlp.topics = _.filter(nlp.topics, elem => {
+                        return elem.score === 1;
                     });
+
+                    const q = getQuestions(text);
+                    if (q.length) {
+                        questions.push({
+                            url,
+                            category: term,
+                            text,
+                            tags: _.filter(nlp.topics, topic => topic.score === 1).slice(0, 5),
+                            q
+                        });
+                    }
                 }
+            } catch (ex) {
+
             }
         });
         return questions;
