@@ -115,6 +115,7 @@ Template.home.viewmodel({
         swal({
             title: 'Ask a question',
             input: 'text',
+            type: 'question',
             showCancelButton: true,
             confirmButtonText: 'Submit',
             showLoaderOnConfirm: true,
