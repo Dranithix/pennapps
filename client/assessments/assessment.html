@@ -1,5 +1,6 @@
 <template name="assessments">
-    <section style="margin-top: 0;border-left: 30px solid #6FE0B8;border-right: 30px solid #6FE0B8;" class="section columns">
+    <section style="margin-top: 0;border-left: 30px solid #6FE0B8;border-right: 30px solid #6FE0B8;"
+             class="section columns">
         <div class="column is-4 assessment-container">
             <h4 class="title is-4 has-text-left">Assessments</h4>
             <hr/>
@@ -8,14 +9,24 @@
                     <span><i class="fa fa-chevron-down" aria-hidden="true"></i><span style="margin-left: 1rem;"><strong>Limits and The First Principle</strong></span></span>
                 </li>
                 <div class="assessment-dd" style="margin-left: 1rem;">
-                    <li><i class="fa fa-chevron-right" aria-hidden="true"></i><span class="assessment-dd-label" style="margin-left: 1rem;">Introduction to Limits</span></li>
-                    <li><i class="fa fa-chevron-right" aria-hidden="true"></i><span class="assessment-dd-label" style="margin-left: 1rem;">The Negative Limit</span></li>
-                    <li><i class="fa fa-chevron-right" aria-hidden="true"></i><span class="assessment-dd-label" style="margin-left: 1rem;">Limits in The Infinite Direction</span></li>
-                    <li><i class="fa fa-chevron-right" aria-hidden="true"></i><span class="assessment-dd-label" style="margin-left: 1rem;">The Limit That Don't Exit</span></li>
-                    <li><i class="fa fa-chevron-right" aria-hidden="true"></i><span class="assessment-dd-label" style="margin-left: 1rem;">bla bla bla</span></li>
+                    <li><i class="fa fa-chevron-right" aria-hidden="true"></i><span class="assessment-dd-label"
+                                                                                    style="margin-left: 1rem;">Introduction to Limits</span>
+                    </li>
+                    <li><i class="fa fa-chevron-right" aria-hidden="true"></i><span class="assessment-dd-label"
+                                                                                    style="margin-left: 1rem;">The Negative Limit</span>
+                    </li>
+                    <li><i class="fa fa-chevron-right" aria-hidden="true"></i><span class="assessment-dd-label"
+                                                                                    style="margin-left: 1rem;">Limits in The Infinite Direction</span>
+                    </li>
+                    <li><i class="fa fa-chevron-right" aria-hidden="true"></i><span class="assessment-dd-label"
+                                                                                    style="margin-left: 1rem;">The Limit That Don't Exit</span>
+                    </li>
+                    <li><i class="fa fa-chevron-right" aria-hidden="true"></i><span class="assessment-dd-label"
+                                                                                    style="margin-left: 1rem;">bla bla bla</span>
+                    </li>
                 </div>
             </ul>
-            <br />
+            <br/>
             <li>
                 <span><i class="fa fa-chevron-right" aria-hidden="true"></i><span style="margin-left: 1rem;"><strong>First and Second Derivatives</strong></span></span>
             </li>
@@ -33,7 +44,139 @@
             </li>
         </div>
         <div class="column is-8">
-            graph
+            <div class="columns">
+                <div class="column is-3">
+                    <canvas class="progressChart" width="256"></canvas>
+                </div>
+                <div class="column is-9">
+                    <h4 class="title is-5 has-text-left">Limits and The First Principle</h4>
+                    <hr/>
+                    <p class="heading">Mastered: 3/20 Questions</p>
+                    <br/>
+                    <br/>
+                    <div class="level">
+                        <div class="level-right">
+                            <div class="level-item">
+                                <div class="button is-primary">
+                                    <span class="icon">
+                                        <i class="fa fa-sticky-note"></i>
+                                        </span>
+                                    <span>Create Assessment</span>
+                                </div>
+                            </div>
+                            <div class="level-item">
+                                <div class="button is-primary">
+                                    <span class="icon">
+                                        <i class="fa fa-pie-chart"></i>
+                                        </span>
+                                    <span>Trends</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns">
+                <div class="column is-3">
+                    <canvas class="progressChart" width="256"></canvas>
+                </div>
+                <div class="column is-9">
+                    <h4 class="title is-5 has-text-left">First and Second Derivatives</h4>
+                    <hr/>
+                    <p class="heading">Mastered: 7/15 Questions</p>
+                    <br/>
+                    <br/>
+                    <div class="level">
+                        <div class="level-right">
+                            <div class="level-item">
+                                <div class="button is-primary">
+                                    <span class="icon">
+                                        <i class="fa fa-sticky-note"></i>
+                                        </span>
+                                    <span>Create Assessment</span>
+                                </div>
+                            </div>
+                            <div class="level-item">
+                                <div class="button is-primary">
+                                    <span class="icon">
+                                        <i class="fa fa-pie-chart"></i>
+                                        </span>
+                                    <span>Trends</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns">
+                <div class="column is-3">
+                    <canvas class="progressChart" width="256"></canvas>
+                </div>
+                <div class="column is-9">
+                    <h4 class="title is-5 has-text-left">Trigonometric Derivatives</h4>
+                    <hr/>
+                    <p class="heading">Mastered: 12/16 Questions</p>
+                    <br/>
+                    <br/>
+                    <div class="level">
+                        <div class="level-right">
+                            <div class="level-item">
+                                <div class="button is-primary">
+                                    <span class="icon">
+                                        <i class="fa fa-sticky-note"></i>
+                                        </span>
+                                    <span>Create Assessment</span>
+                                </div>
+                            </div>
+                            <div class="level-item">
+                                <div class="button is-primary">
+                                    <span class="icon">
+                                        <i class="fa fa-pie-chart"></i>
+                                        </span>
+                                    <span>Trends</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns">
+                <div class="column is-3">
+                    <canvas class="progressChart" width="256"></canvas>
+                </div>
+                <div class="column is-9">
+                    <h4 class="title is-5 has-text-left">Basic Integration</h4>
+                    <hr/>
+                    <p class="heading">Mastered: 30/40 Questions</p>
+                    <br/>
+                    <br/>
+                    <div class="level">
+                        <div class="level-right">
+                            <div class="level-item">
+                                <div class="button is-primary">
+                                    <span class="icon">
+                                        <i class="fa fa-sticky-note"></i>
+                                        </span>
+                                    <span>Create Assessment</span>
+                                </div>
+                            </div>
+                            <div class="level-item">
+                                <div class="button is-primary">
+                                    <span class="icon">
+                                        <i class="fa fa-pie-chart"></i>
+                                        </span>
+                                    <span>Trends</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </section>
 </template>
