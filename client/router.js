@@ -60,3 +60,9 @@ userRoutes.route('/assessments', {
         BlazeLayout.render('app', {content: 'assessments'});
     }
 })
+
+userRoutes.route('/classroom', {
+    action: (params, queryParams) => {
+        BlazeLayout.render('app', {content: 'classroom'});
+    }
+})
