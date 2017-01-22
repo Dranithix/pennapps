@@ -158,7 +158,6 @@ Template.classroom.viewmodel({
     users: users,
     onRendered: function () {
         _.each($(".progressChart"), element => {
-            console.log(element)
             const power = parseInt(Math.random() * 100);
             const progressChart = new Chart(
                 element,
@@ -182,6 +181,6 @@ Template.classroom.viewmodel({
 
     },
     createAssessment() {
-
+        FlowRouter.go("/worksheet/trigonometry");
     }
 })
