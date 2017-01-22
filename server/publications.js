@@ -13,3 +13,7 @@ Meteor.publish('exams.view', function(id) {
 Meteor.publish('comments.view', function(exam, question) {
     return Comments.find({exam, question});
 })
+
+Meteor.publish('users', function() {
+    return Meteor.users.find({});
+})

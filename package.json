@@ -14,6 +14,7 @@
     "google": "^2.1.0",
     "jquery-knob": "^1.2.11",
     "meteor-node-stubs": "~0.2.0",
+    "moment": "^2.17.1",
     "request": "^2.79.0",
     "sweetalert2": "^6.3.2",
     "textract": "^2.1.1"

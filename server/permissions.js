@@ -1,6 +1,3 @@
-/**
- * Created by Kenta Iwasaki on 1/21/2017.
- */
 import "../shared/collections";
 
 Exams.allow({
@@ -13,7 +10,8 @@ Exams.allow({
 })
 
 Comments.allow({
-    insert: () => {
+    insert: (userId, doc) => {
+        doc.created_at = Date.now();
         return true;
     },
     update: () => {
