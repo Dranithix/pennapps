@@ -1,0 +1,99 @@
+#refl {
+    content: "";
+    display: block;
+    width: 800px;
+    height: 500px;
+    margin: 0 auto;
+    opacity: 0.1;
+    z-index: -1;
+    transform: translateY(-62px) scaleY(-1);
+    background: -moz-linear-gradient(bottom,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 5%,
+    rgba(255, 255, 255, 0) 6%,
+    rgba(255, 255, 255, 0) 45%,
+    rgba(255, 255, 255, 1) 75%,
+    rgba(255, 255, 255, 1) 100%),
+    -moz-element(#chart);
+    background-position: bottom, bottom;
+    -moz-background-size: cover, cover;
+}
+
+#chart {
+    display: block;
+    margin: 0 auto;
+    /*
+      This is the nonstandard way of making the reflection.
+      Only works in webkit (the other way doesnt work in webkit so use this instead)
+    */
+
+    -webkit-box-reflect: below -60px -webkit-gradient(linear, left bottom, left top,
+    color-stop(0.01, rgba(0, 0, 0, 0)),
+    color-stop(0.30, rgba(0, 0, 0, 0)),
+    color-stop(0.42, rgba(0, 0, 0, 0.1)),
+    color-stop(0.85, rgba(0, 0, 0, 0.1)),
+    color-stop(1.25, rgba(0, 0, 0, 0)),
+    color-stop(2.20, rgba(0, 0, 0, 0)));
+}
+
+.x.axis g:first-of-type, .x.axis g:last-of-type {
+    display: none;
+}
+
+.axis line, .axis path {
+    fill: none;
+    stroke: rgba(111, 224, 184, 0.8);
+    shape-rendering: crispEdges;
+}
+
+.axis path.domain {
+    stroke: none;
+}
+
+.axis text {
+    fill: #8C807D;
+    font-size: 1em;
+    font-weight: 300;
+}
+
+.line {
+    fill: none;
+    stroke-width: 1px;
+    stroke: rgba(111, 224, 184, 0.8);
+}
+
+.line.done {
+    stroke: none;
+}
+
+.area {
+    stroke-width: 0px;
+}
+
+.area1 {
+    fill: rgba(111, 224, 184, 0.4);
+}
+
+.area2 {
+    fill: rgba(111, 224, 184, 0.8);
+}
+
+.basline {
+    stroke-width: 10px;
+}
+
+.area1Baseline {
+    stroke: rgba(111, 224, 184, 0.8);
+}
+
+.area2Baseline {
+    stroke: rgba(111, 224, 184, 0.8);
+}
+
+.axis line {
+    transition: opacity 0.5s;
+}
+
+.axis.done line {
+    opacity: 0;
+}

@@ -40,7 +40,7 @@
                                 </div>
                             </div>
                             <div class="level-item">
-                                <div class="button is-primary">
+                                <div class="button is-primary" {{b "click: toggleModal"}}>
                                     <span class="icon">
                                         <i class="fa fa-pie-chart"></i>
                                     </span>
@@ -75,7 +75,7 @@
                                 </div>
                             </div>
                             <div class="level-item">
-                                <div class="button is-primary">
+                                <div class="button is-primary" {{b "click: toggleModal"}}>
                                     <span class="icon">
                                         <i class="fa fa-pie-chart"></i>
                                     </span>
@@ -110,7 +110,7 @@
                                 </div>
                             </div>
                             <div class="level-item">
-                                <div class="button is-primary">
+                                <div class="button is-primary" {{b "click: toggleModal"}}>
                                     <span class="icon">
                                         <i class="fa fa-pie-chart"></i>
                                         </span>
@@ -145,7 +145,7 @@
                                 </div>
                             </div>
                             <div class="level-item">
-                                <div class="button is-primary">
+                                <div class="button is-primary" {{b "click: toggleModal"}}>
                                     <span class="icon">
                                         <i class="fa fa-pie-chart"></i>
                                         </span>
@@ -158,4 +158,37 @@
             </div>
         </div>
     </section>
+
+    <div id="chartModal" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card" style="height: 100%">
+            <header class="modal-card-head">
+                <button class="delete" {{b "click: toggleModal"}}></button>
+            </header>
+            <div id="preview" style="background-color: white; width: 100%; height: 100%;">
+                {{#if modalOpen}}
+                    {{> chartModal}}
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="chartModal">
+    <div class="level" style="padding: 16px;">
+        <div class="level-left">
+            <div class="level-item">
+                <p class="heading">STUDENT GRADE: <strong>B+</strong></p>
+            </div>
+            <div class="level-item">
+                <p class="heading">CLASS AVERAGE: <strong>72.89%</strong></p>
+            </div>
+        </div>
+    </div>
+    <svg id="chart"></svg>
+    <div id="refl">
+    </div>
+    <br/>
+    <br/>
+
 </template>
